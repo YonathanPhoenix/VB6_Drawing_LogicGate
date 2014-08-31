@@ -1,0 +1,263 @@
+Moving ‘AND’ Gate
+By Than Kywe
+
+Nowadays, digital electronics is rapidly growing technology and digital circuits are widely used in most new products; and many software developers developed very useful and powerful electronic CAE softwares.Students and non-experienced programmers wanted to know the method of programming to develop the circuit design tools. In this article, I try to show the method of drawing ‘AND’ gate in Visual Basic programming. I would like to write the method of 
+drawing ‘AND’ gate in Visual Basic Programming by using API functions in future.
+
+VB 3, VB4, VB5  
+
+Simple Drawing Method
+To draw the ‘AND’ gate on the screen, locate the coordinates of all points of  ‘AND’ gate. Firstly, draw the ‘AND’ gate inside the virtual rectangle as shown in figure 1.
+
+
+	Figure 1.
+	
+Assume the coordinate of point O is (X1,Y1)  and  Q is (X2,Y2).
+Then the coordinates of points P and R become (X2,Y1) and (X1, Y2) respectively.
+
+The length of OP = OC + CD + ME + EF
+If  CD = 6 OC, ME = 2 OC and EF = OC then
+………………OP = OC + 6 OC + 2 OC + OC
+	        OP =  10 OC  
+    OC =  OP / 10, CD = 6 OP / 10,  ME = 2 OP / 10, EF = OP / 10
+Since, coordinate of point O is (X1,Y1) and point P is (X2,Y1).         		    
+                  OP = X2 - X1
+OC = (X2 - X1) / 10, CD = 6 (X2 - X1) / 10, ME = 2 (X2 - X1) / 10, EF = (X2 - X1) / 10	
+If PQ = 2 OP / 5 then PQ = 2 (X2 - X1) / 5.   
+If PF = PQ / 2 then PF = (X2 - X1) / 5.
+If CB = HI = OP / 15 then CB = HI = (X2 - X1) / 15.
+
+Draw the segment AB
+X coordinate of point A  = X1
+Y coordinate of point A  = Y1 + CB = Y1 + (X2 - X1) / 15
+ coordinates of point A = (X1, Y1 + (X2 - X1) / 15)
+
+X coordinate of point B  = X1 + OC	(because OC = AB)
+                                                          = X1 +  (X2 - X1) / 10 =  (X2 / 10) + (9 * X1) / 10     
+Y coordinate of point B  = Y coordinate of A  = Y1 + (X2 - X1) / 15
+ coordinates of point B = (X1 +  (X2 - X1) / 10, Y1 + (X2 - X1) / 15)
+
+To draw the segment AB, write the following code in Visual Basic.
+Line((X1, Y1 + (X2 - X1) / 15) - ((X2 / 10) +((9 * X1) / 10), Y1 + (X2 - X1) / 15))
+
+Draw the segment CD
+X coordinate of point C  = X coordinate of point B
+                                      = (X2 / 10) + (9 * X1) / 10
+Y coordinate of point C  = Y1 
+ coordinates of point C = ((X2 / 10) + (9 * X1) / 10, Y1)
+
+X coordinate of point D = X coordinate of point C + CD
+                        = (X2 / 10) + (9 * X1) / 10 + 6 * (X2 - X1) /10
+                        = (7 * X2 + 3 * X1) / 10
+Y coordinate of point D  = Y1 
+ coordinates of point D = ((7 * X2 + 3 * X1) / 10, Y1)
+
+To draw the segment CD, write the following code in Visual Basic.
+Line((X2 / 10) + (9 * X1) / 10, Y1) -((7 * X2 + 3 * X1) / 10, Y1)
+
+Draw the segment EF
+X coordinate of point E  = X coordinate of D + ME
+                         =  (7 * X2 + 3 * X1) / 10 + (X2 - X1) / 5
+                         = (9 * X2 + X1) / 10
+Y coordinate of point E  = Y2 - PF
+                         = Y2 -  (X2 - X1) / 5
+ coordinates of point E = ((9 * X2 + X1) / 10, Y2 -  (X2 - X1) / 5)
+
+X coordinate of point F  = X2
+Y coordinate of point F  = Y coordinate of point E
+                         = Y2 -  (X2 - X1) / 5
+
+ coordinates of point F = ( X2, Y2 -  (X2 - X1) / 5)
+
+To draw the segment EF, write the following code in Visual Basic.
+Line((9 * X2 + X1) / 10, Y2 -  (X2 - X1) / 5) - (X2, Y2 -  (X2 - X1) / 5)
+
+Draw the segment GH
+X coordinate of point G  = X coordinate of D 
+                         =  (7 * X2 + 3 * X1) / 10 
+Y coordinate of point G  = Y2
+
+ coordinates of point G = ((7 * X2 + 3 * X1) / 10, Y2)
+
+
+X coordinate of point H  = X coordinate of C
+                         = (X2 / 10) + (9 * X1) / 10
+Y coordinate of point H  = Y2
+ coordinates of point H = ((X2 / 10) + (9 * X1) / 10, Y2)
+
+To draw the segment GH, write the following code in Visual Basic.
+Line(((7 * X2 + 3 * X1) / 10, Y2) - ((X2 / 10) + (9 * X1) / 10, Y2)
+
+
+Draw the segment IJ
+X coordinate of point I  = X coordinate of C 
+                         =  (X2 / 10) + (9 * X1) / 10
+Y coordinate of point I  = Y2 - HI = Y2 - (X2 - X1) / 15
+
+ coordinates of point I = ((X2 / 10) + (9 * X1) / 10, Y2 - (X2 - X1) / 15)
+
+X coordinate of point J  =  X1
+Y coordinate of point J  = Y coordinate of I
+                                     = Y2 - (X2 - X1) / 15
+ coordinates of point J = ( X1, Y2 - (X2 - X1) / 15)
+
+To draw the segment IJ, write the following code in Visual Basic.
+Line(((X2 / 10) + (9 * X1) / 10, Y2 - (X2 - X1) / 15) - (( X1, Y2 - (X2 - X1) / 15)))
+
+Draw the semicircle
+X coordinate of point  M  = X coordinate of D
+                          =  (7 * X2 + 3 * X1) / 10
+Y coordinate of point M  = Y2 - HI = Y2 - (X2 - X1) / 15
+ coordinates of point M = ((7 * X2 + 3 * X1) / 10, Y2 - (X2 - X1) / 15)
+
+
+X coordinate of point E  = X coordinate of D + ME
+                         =  (7 * X2 + 3 * X1) / 10 + (X2 - X1) / 5
+                         = (9 * X2 + X1) / 10
+Y coordinate of point E  = Y2 - PF= Y1 + PF
+                         = Y1 +  (X2 - X1) / 5
+ coordinates of point E = ((9 * X2 + X1) / 10, Y1 +  (X2 - X1) / 5)
+
+Radius of semi-circle = ME = (X2 - X1) / 5
+
+
+To draw the semicircle of center point E, write the following code in Visual Basic.
+Circle ((7 * X2 + 3 * X1) / 10),( Y1 +  (X2 - X1) / 5)), (X2 - X1) / 5, 10/7, 33 / 7, 12.8/8
+Listing 1 shows subroutine ‘DrawAndGate’ which draws ‘AND’ gate.       
+
+
+Listing 1. Drawing “And” Gate
+Sub DrawAndGate(X1, Y1, X2, Y2 As Integer)
+Dim Radius As Single
+    Radius = Abs((X2 - X1) / 5)
+    Cls
+    Line ((X2 / 10) + (9 * X1 / 10), Y2)-((7 * X2 / 10 + _        ‘ Line HG
+       (3 * X1 / 10)), Y2)
+    Line (((X2 / 10) + (9 * X1 / 10)), Y2)-((X2 / 10) + (9 * X1 / 10), Y1)    ‘ Line HC
+    Line (X2 / 10 + (9 * X1 / 10), Y1)-(7 * X2 / 10 + (3 * X1 / 10), Y1)      ‘ Line CD
+    Line (X1, Y2 - ((X2 - X1) / 15))-((X2 / 10) + ((9 * X1) / 10), _	   ‘ Line JI	
+       Y2 - ((X2 - X1) / 15))
+    Line (X1, Y1 + ((X2 - X1) / 15))-((X2 / 10) + ((9 * X1) / 10), _	   ‘ Line AB
+       Y1 + ((X2 - X1) / 15))
+    Line ((9 * X2 / 10) + (X1 / 10), Y2 - ((X2 - X1) / 5))- _		   ‘ Line EF
+      (X2, Y2 - ((X2 - X1) / 5))
+    Circle ((7 * X2 / 10) + (3 * X1 / 10), (Y1 + ((X2 - X1)) / 5)), _	  ‘Semi-Circle
+      Radius, 10 / 7, 33 / 7, 12.8 / 8
+    
+End Sub
+
+Moving ‘AND’ Gate
+Write the necessary code inside MouseDown, MouseMove and MouseUp procedures to move ‘AND’  gate by mouse. Listing 2 shows MouseDown procedure. SelectedBtn is a variable and it is the index value of  Command Button. It is declared in General (Declarations) section as an integer type. The variables ShiftX and ShiftY in case 2, find the exact center position of the virtual rectangle. aX1, aY1, bX2 and bY2  are temporary positions value of virtual rectangle OPQR.
+RecLeft, RecTop, RecRight and RecBottom are corner positions of virtual rectangle OPQR. MouseDown procedure will initialize the virtual rectangle and mouse positions.
+
+Listing 2. MouseDown Procedure
+Private Sub Form_MouseDown(Button As Integer, Shift As Integer, X As Single, Y As Single)
+Select Case SelectedBtn
+  Case 0 'Draw And Gate
+    Cls
+    X1 = X: Y1 = Y: X2 = X1: Y2 = Y1
+  Case 1 'Center Shift 
+    aX1 = 0: aY1 = 0: bX2 = 0: bY2 = 0 'reset
+  Case 2 'Shift "And" Gate position with mouse
+    ShiftX = X - ((X1 + X2) \ 2)
+    ShiftY = Y - ((Y1+ Y2) \ 2)
+    aX1 = ShiftX: aY1 = ShiftY
+  Case 3 To 5 'Move, Slide L/R or T/B "And" Gate from X and Y offset
+    aX1 = X: aY1 = Y
+    RecLeft = X1: RecTop = Y1: RecRight = X2: RecBottom = Y2
+End Select
+End Sub
+
+MouseMove Procedure
+MouseMove procedure will draw or move the ‘AND’ gate according to the mouse’s movement.
+Listing 3 shows MouseMove procedure.
+
+Listing 3
+If Button = 1 Then          'For Left click only
+XCenter = aX1 - X: YCenter = aY1 - Y
+ShiftX = X - ((X1 + X2) \ 2)
+ShiftY = Y - ((Y1 + Y2) \ 2)
+Select Case SelectedBtn
+  Case 0      'Draw box
+    DrawAndGate X1, Y1, X2, Y2
+    X2 = X: Y2 = Y: X1 = X / 3: Y1 = Y2 - ((4 * X) / 15)
+    DrawAndGate X1, Y1, X2, Y2
+  Case 1 To 2  'Center shift & Offset shift -Mouse
+    DrawAndGate X1, Y1, X2, Y2
+    X1 = (X1 - aX1) + ShiftX
+    Y1 = (Y1 - aY1) + ShiftY
+    X2 = (X2 - aX1) + ShiftX
+    Y2 = (Y2 - aY1) + ShiftY
+    DrawAndGate X1, Y1, X2, Y2
+  Case 3      'XY Move -Mouse
+    DrawAndGate RecLeft, RecTop, RecRight, RecBottom
+    RecLeft = X1 - XCenter
+    RecTop = Y1 - YCenter
+    RecRight = X2 - XCenter
+    RecBottom = Y2 - YCenter
+    DrawAndGate RecLeft, RecTop, RecRight, RecBottom
+  Case 4      'Slide Left/Right
+    DrawAndGate RecLeft, RecTop, RecRight, RecBottom
+    RecLeft = X1 - XCenter
+    RecRight = X2 - XCenter
+    DrawAndGate RecLeft, RecTop, RecRight, RecBottom
+  Case 5      'Slide Top/Bottom
+    DrawAndGate RecLeft, RecTop, RecRight, RecBottom
+    RecTop = Y1 - YCenter
+    RecBottom = Y2 - YCenter
+    DrawAndGate RecLeft, RecTop, RecRight, RecBottom
+End Select
+End If
+
+Clear Screen
+Listing 4 will show the procedure how to clear screen when you click ‘Cls’ button. The index of ‘Cls Screen’ button in my program is 6. When you click that button, the variable SelectedBtn will be equal to 6 and you can clear the screen.
+
+Listing 4. Clear Screen 
+Private Sub cmdBtnGroup_Click(Index As Integer)
+SelectedBtn = Index
+Select Case SelectedBtn
+    Case 6
+        Cls
+                X1 = 0: Y1 = 0: X2 = 0: Y2 = 0
+        aX1 = 0: aY1 = 0
+
+End Select
+If Index = 7 Then End
+End Sub
+
+Message on the status bar
+To get the message on the status bar when you move the mouse pointer on the group-command buttons, write the coding 
+inside group button MouseMove event as stated in listing 5.
+
+Listing 5. Getting message on the status bar
+Private Sub cmdBtnGroup_MouseMove(Index As Integer, Button As Integer, Shift As Integer, X As Single, Y As Single)
+Select Case Index
+Case 0
+        stbDraw.SimpleText = "Use your mouse to draw the logicgate."
+    Case 1
+        stbDraw.SimpleText = "Click button and use your mouse to move "
+        stbDraw.SimpleText = stbDraw.SimpleText + "the logicgate."
+    Case 2
+        stbDraw.SimpleText = "Click button and use your mouse to move "
+        stbDraw.SimpleText = stbDraw.SimpleText + "the logicgate."
+    Case 3
+        stbDraw.SimpleText = "Click button and use your mouse to move "
+        stbDraw.SimpleText = stbDraw.SimpleText + "the logicgate."
+    Case 4
+        stbDraw.SimpleText = "Click button and use your mouse to move "
+        stbDraw.SimpleText = stbDraw.SimpleText + "the logicgate horizontally."
+    Case 5
+        stbDraw.SimpleText = "Click button and use your mouse to move "
+        stbDraw.SimpleText = stbDraw.SimpleText + "the logicgate vertically."
+    Case 6
+        stbDraw.SimpleText = "Click 'Cls' button to clear the screen."
+    Case 7
+        stbDraw.SimpleText = "Click here to quit this program."End Select
+End Sub
+
+
+Author Bio
+Than Kywe is a Burmese graduate in Physics from Rangoon University, Burma. He had been a computer programmer since 1994 
+and developed the client / sever applications software in Visual Basic, Delphi and FoxPro. Currently, he is planning to 
+publish a book concerned with “Drawing Circuit Diagram in Visual Basic Programming” and is looking for a chance to work 
+in US for more experience. kywe@pc.jaring.my, than90@hotmail.com
