@@ -9,7 +9,7 @@ VB 3, VB4, VB5
 Simple Drawing Method
 To draw the ‘AND’ gate on the screen, locate the coordinates of all points of  ‘AND’ gate. Firstly, draw the ‘AND’ gate inside the virtual rectangle as shown in figure 1.
 
-
+ANDGate.png
 	Figure 1.
 	
 Assume the coordinate of point O is (X1,Y1)  and  Q is (X2,Y2).
